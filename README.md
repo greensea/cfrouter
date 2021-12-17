@@ -33,4 +33,5 @@ haproxy 不支持根据服务器速度进行负载均衡，而 cfrouter 可以�
 如果你觉得 cfrouter 很有用，或者发掘了新的功能，欢迎提交使用案例，我会在这里列出来。
 
 ## 管理页面预览
+![](https://raw.githubusercontent.com/greensea/cfrouter/master/manage_preview.png)
 
