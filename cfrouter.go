@@ -498,6 +498,7 @@ func (s *SNode) CheckStall() {
 
 func (s *SNode) Meter() {
 	t := time.NewTicker(1 * time.Second)
+	defer t.Stop()
 
 	for {
 		select {
@@ -596,6 +597,7 @@ func (s *SChannel) Meter() {
 	var LastReadN int64
 
 	t := time.NewTicker(1 * time.Second)
+	defer t.Stop()
 
 	for {
 		select {
@@ -767,7 +769,7 @@ func (s *SRouter) Dump() string {
 
 	lines = append(lines, "=== Nodes ===")
 	//lines = append(lines, "Target \t\t\t SpeedPerChannel[1s/5s/1m/5m] \t\t\t SpeedPerChannel5s \t  SpeedPerChannel1m \t SpeedPerChannel5m \t ChannelCount \t ChannelServed \t\t ReadSize")
-	lines = append(lines, "Target [flags]             SpeedPerChannel[1s/5s/15s/1m/5m] \t\t\t      ChannelActive      ChannelServed      TransferdSize      LastActiveTime")
+	lines = append(lines, "Target [flags]          SpeedPerChannel[1s/5s/1m/5m] \t\t\t             ChannelActive      ChannelServed      TransferdSize      LastActiveTime")
 
 	var nodes []*SNode
 	nodes = append(nodes, s.Nodes...)
@@ -819,6 +821,8 @@ func (s *SRouter) Dump() string {
 
 func (s *SRouter) Meter() {
 	t := time.NewTicker(1 * time.Second)
+	defer t.Stop()
+
 	for {
 		select {
 		case <-t.C:
